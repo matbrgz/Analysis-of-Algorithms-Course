@@ -1,36 +1,42 @@
-import numpy as np
+# To add an item to the top of the stack, use append()
+class stack(list):
+	''' push() to add an item to the top of the stack '''
+	push = list.append
 
-def instance(size, order):
-	# TODO: Improve randomness of the data variance
-	if order == 'ASC':
-		array = list(range(0, size))
+
+# non-recursive quicksort
+def quick_sort(array, size):
+	"""
+	Sort a sequence using the quick-sort algorithm.
+
+	:param array: the sequence to be sorted
+	:return: array, sorted
+	"""
+	if size < 2:
 		return array
+	todo = stack([(0, size - 1)])
+	while todo:
+		elem_idx, pivot_idx = low, high = todo.pop()
+		elem = array[elem_idx]
+		pivot = array[pivot_idx]
+		while pivot_idx > elem_idx:
+			if elem > pivot:
+				array[pivot_idx] = elem
+				pivot_idx -= 1
+				array[elem_idx] = elem = array[pivot_idx]
+			else:
+				elem_idx += 1
+				elem = array[elem_idx]
+		array[pivot_idx] = pivot
 
-	if order == 'DESC':
-		array = list(range(0, size))
-		array = list(reversed(array))
-		return array
-
-	if order == 'RAND':
-		array = list(range(0, size))
-		array = np.random.shuffle(array)
-		return array
-return []
-
-def qsort1(array, left, right):  
-    def swap(array, s, d):  
-        if s != d:  
-            tmp = array[s]  
-            array[s] = arr[d]  
-            array[d] = tmp  
-    if l >= r:  
-        return      
-    m = l  
-    for i in range(left, right):  
-        if array[i] <= array[right]:  
-            swap(arr, i, m)  
-            m += 1  
-    swap(array, m, right)  
-    qsort3(array, left, m-1)  
-    qsort3(array, m+1, right)  
-    return array 
+		lsize = pivot_idx - low
+		hsize = high - pivot_idx
+		if lsize <= hsize:
+			if 1 < lsize:
+				todo.push((pivot_idx + 1, high))
+				todo.push((low, pivot_idx - 1))
+		else:
+			todo.push((low, pivot_idx - 1))
+		if 1 < hsize:
+			todo.push((pivot_idx + 1, high))
+	return array
