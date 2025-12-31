@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+# C++ artifacts
+a.out
+*.o
+sorting_app
+
 # Distribution / packaging
 .Python
 build/
