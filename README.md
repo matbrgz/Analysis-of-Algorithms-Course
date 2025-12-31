@@ -3,7 +3,8 @@
 Este projeto foi desenvolvido durante a graduação em Sistemas de Informação na Universidade Federal de Viçosa (UFV). O objetivo é comparar o desempenho de diferentes algoritmos de ordenação implementados em Python e C++.
 
 ## Autor
-Matheus Rocha Vieira
+[Matheus Breguêz Rocha Vieira](https://eu.mat.br)
+Igor Alves
 
 ## Estrutura do Projeto
 
